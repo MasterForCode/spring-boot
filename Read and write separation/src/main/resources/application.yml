@@ -1,0 +1,33 @@
+# JPA
+spring:
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: create
+
+# Server
+server:
+  port: 8888
+
+# Sharing JDBC
+sharding:
+  jdbc:
+    data-sources:
+      ds_master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.0.120:3306/master?characterEncoding=utf8&useSSL=false
+        username: root
+        password: wangBin_123
+      ds_slave:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.0.120:3306/slave?characterEncoding=utf8&useSSL=false
+        username: root
+        password: wangBin_123
+    master-slave-rule:
+      name: ds_ms
+      master-data-source-name: ds_master
+      slave-data-source-names: ds_slave
+      load-balance-algorithm-type: round-robin
