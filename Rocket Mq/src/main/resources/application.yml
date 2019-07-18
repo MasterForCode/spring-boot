@@ -1,0 +1,10 @@
+apache:
+  rocketmq:
+    #消费者的配置
+    consumer:
+      pushConsumer: testConsumer
+    #生产者的配置
+    producer:
+      producerGroup: testProducer
+    #Nameserver的地址,这里配置你MQ安装的机器上的IP就好，我这里在本机安装的
+    namesrvAddr: 192.168.0.110:9876
